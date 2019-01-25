@@ -1,0 +1,33 @@
+{
+    "name": "mattamorphic/actions-php-test",
+    "authors": [
+        {
+            "name": "Mattamorphic",
+            "email": "9885259+Mattamorphic@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpunit/phpunit": "^7.5",
+        "phpstan/phpstan": "^0.10.6"
+    },
+    "scripts": {
+      "test": "vendor/bin/phpunit tests/",
+      "analyse": "vendor/bin/phpstan --level=7 analyse src tests",
+      "sniff": "vendor/bin/phpcs src tests"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mattamorphic\\ActionsPHP\\": "src/",
+            "Mattamorphic\\ActionsPHP\\Example\\": "example/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mattamorphic\\ActionsPHP\\Tests\\": "tests/"
+        }
+    }
+}
