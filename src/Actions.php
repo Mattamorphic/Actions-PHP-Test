@@ -34,21 +34,40 @@ class Actions
      */
     public static function convertCSVToJson(string $csv): string
     {
+        $headers = null;
         $data = [];
+        foreach (self::_genCSVLine($csv) as $csv_arr) {
+            if ($headers === null) {
+                $headers = $csv_arr;
+                continue;
+            }
+            $data[] = array_combine($headers, $csv_arr);
+        }
+        $json = json_encode($data);
+        return $json ? $json : '';
+    }
+
+    /**
+     * Generator to iterate over CSV string
+     *
+     * @param string $csv The CSV string to convert
+     *
+     * @return \Generator
+     */
+    private static function _genCSVLine(string $csv): \Generator
+    {
         $header_line = strtok($csv, self::SEPARATOR);
         if (!$header_line) {
             throw new \Exception('No valid data');
         }
-        $headers = str_getcsv($header_line);
+        yield str_getcsv($header_line);
         $line = strtok(self::SEPARATOR);
         if (!$line) {
             throw new \Exception('No valid data');
         }
         while ($line !== false) {
-            $data[] = array_combine($headers, str_getcsv($line));
+            yield str_getcsv($line);
             $line = strtok(self::SEPARATOR);
         }
-        $json = json_encode($data);
-        return $json ? $json : '';
     }
 }
