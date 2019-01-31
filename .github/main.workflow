@@ -1,5 +1,5 @@
 workflow "Check the code" {
-  on = "push"
+  on = "pull_request"
   resolves = ["Analyse", "Sniff", "Test"]
 }
 

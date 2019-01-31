@@ -17,7 +17,7 @@ $csv = "name,age\nmatt,31";
 print_r(Actions::convertCSVToJson($csv));
 ```
 
-When you `push` code to this repository the workflow that is triggered runs 3 GitHub actions:
+When you trigger a `pull_request` event on this repository the workflow that is triggered runs 3 GitHub actions:
 
 1. Analyse the code against PHP 7 best practices
 2. Sniff the code for PSR coding standards
@@ -44,4 +44,4 @@ composer run-script test
 ```
 
 ## Roadmap
-- Creating an issue when any of the checks fail with context 
+- Creating an issue when any of the checks fail with context
