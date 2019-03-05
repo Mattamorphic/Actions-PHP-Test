@@ -49,6 +49,6 @@ class Actions
             $line = strtok(self::SEPARATOR);
         }
         $json = json_encode($data);
-        return $json ? $json : '';
+        return $json ?? '';
     }
 }
